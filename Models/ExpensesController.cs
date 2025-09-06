@@ -20,16 +20,6 @@ namespace ExpenseTracker.Controllers
             return View(expenses);
         }
 
-        // GET: /Expenses/Details/5
-        public IActionResult Details(int id)
-        {
-            var expense = _context.Expenses.FirstOrDefault(e => e.Id == id);
-            if (expense == null)
-                return NotFound();
-
-            return View(expense);
-        }
-
         // GET: /Expenses/Create
         public IActionResult Create()
         {
@@ -54,37 +44,36 @@ namespace ExpenseTracker.Controllers
         public IActionResult Edit(int id)
         {
             var expense = _context.Expenses.FirstOrDefault(e => e.Id == id);
-            if (expense == null)
-                return NotFound();
-
+            if (expense == null) return NotFound();
             return View(expense);
         }
 
         // POST: /Expenses/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, Expense expense)
+        public IActionResult Edit(Expense expense)
         {
-            if (id != expense.Id)
-                return BadRequest();
+            if (!ModelState.IsValid)
+                return View(expense);
 
-            if (ModelState.IsValid)
-            {
-                _context.Update(expense);
-                _context.SaveChanges();
-                return RedirectToAction(nameof(Index));
-            }
+            var existingExpense = _context.Expenses.FirstOrDefault(e => e.Id == expense.Id);
+            if (existingExpense == null) return NotFound();
 
-            return View(expense);
+            existingExpense.Name = expense.Name;
+            existingExpense.Description = expense.Description;
+            existingExpense.Amount = expense.Amount;
+            existingExpense.Category = expense.Category;
+            existingExpense.Date = expense.Date;
+
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: /Expenses/Delete/5
         public IActionResult Delete(int id)
         {
             var expense = _context.Expenses.FirstOrDefault(e => e.Id == id);
-            if (expense == null)
-                return NotFound();
-
+            if (expense == null) return NotFound();
             return View(expense);
         }
 

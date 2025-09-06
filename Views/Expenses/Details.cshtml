@@ -1,27 +1,13 @@
 @model ExpenseTracker.Models.Expense
-@{
-    ViewData["Title"] = "Expense Details";
-}
 
-<div class="form-card">
-    <h2>Expense Details</h2>
+<h2>Expense Details</h2>
 
-    <dl>
-        <dt>Description</dt>
-        <dd>@Model.Description</dd>
-
-        <dt>Amount</dt>
-        <dd>₨ @Model.Amount.ToString("N2")</dd>
-
-        <dt>Category</dt>
-        <dd>@Model.Category</dd>
-
-        <dt>Date</dt>
-        <dd>@Model.Date.ToString("yyyy-MM-dd")</dd>
-    </dl>
-
-    <div class="form-actions">
-        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn">Edit</a>
-        <a asp-action="Index" class="btn">Back</a>
-    </div>
+<div>
+    <h4>@Model.Name</h4>
+    <p>@Model.Description</p>
+    <p>Amount: @Model.Amount</p>
+    <p>Category: @Model.Category</p>
+    <p>Date: @Model.Date.ToShortDateString()</p>
 </div>
+
+<a asp-action="Index" class="btn btn-secondary">Back to List</a>

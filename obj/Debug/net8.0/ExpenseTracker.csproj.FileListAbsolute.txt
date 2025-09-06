@@ -276,3 +276,4 @@
 /Users/bashisthapandey/Desktop/dotnet-projects/ExpenseTracker/obj/Debug/net8.0/ExpenseTracker.pdb
 /Users/bashisthapandey/Desktop/dotnet-projects/ExpenseTracker/obj/Debug/net8.0/ExpenseTracker.genruntimeconfig.cache
 /Users/bashisthapandey/Desktop/dotnet-projects/ExpenseTracker/obj/Debug/net8.0/ref/ExpenseTracker.dll
+/Users/bashisthapandey/Desktop/dotnet-projects/ExpenseTracker/obj/Debug/net8.0/ExpenseTracker.sourcelink.json

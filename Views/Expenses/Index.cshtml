@@ -1,38 +1,36 @@
 @model IEnumerable<ExpenseTracker.Models.Expense>
 
-@{
-    ViewData["Title"] = "Expenses";
-}
+<h2>Expenses</h2>
 
-<h1>Expense Tracker</h1>
-<a href="/Expenses/Create" class="btn-add">Add Expense</a>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add New Expense</a>
+</p>
 
-<table class="expense-table">
+<table class="table">
     <thead>
         <tr>
             <th>Name</th>
+            <th>Description</th>
             <th>Amount</th>
             <th>Category</th>
             <th>Date</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-    @foreach(var expense in Model)
-    {
+@foreach (var item in Model)
+{
         <tr>
-            <td>@expense.Name</td>
-            <td>@expense.Amount</td>
-            <td>@expense.Category</td>
-            <td>@expense.Date.ToShortDateString()</td>
+            <td>@item.Name</td>
+            <td>@item.Description</td>
+            <td>@item.Amount</td>
+            <td>@item.Category</td>
+            <td>@item.Date.ToShortDateString()</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+            </td>
         </tr>
-    }
+}
     </tbody>
 </table>
-
-<style>
-    h1 { color: #333; font-family: Arial, sans-serif; }
-    .btn-add { padding: 8px 15px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px; }
-    .expense-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-    .expense-table th, .expense-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-    .expense-table th { background-color: #f2f2f2; }
-</style>
