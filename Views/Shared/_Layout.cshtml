@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ExpenseTracker</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header class="topbar">
+        <div class="container topbar-inner">
+            <a class="brand" asp-area="" asp-controller="Expenses" asp-action="Index">ExpenseTracker</a>
+            <nav>
+                <a asp-controller="Expenses" asp-action="Index">Dashboard</a>
+                <a asp-controller="Expenses" asp-action="Create" class="btn small">+ Add</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        @RenderBody()
+    </main>
+
+    <footer class="footer">
+        <div class="container">© @DateTime.Now.Year — Your ExpenseTracker</div>
+    </footer>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
